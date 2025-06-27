@@ -1,0 +1,1 @@
+CREATE DATABASE magic CHARSET utf8;

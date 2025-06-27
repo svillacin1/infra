@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aerospike-service
+  namespace: x1
+  labels:
+    app: aerospike
+spec:
+  selector:
+    app: aerospike
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer

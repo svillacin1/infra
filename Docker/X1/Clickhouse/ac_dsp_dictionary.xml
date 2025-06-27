@@ -1,0 +1,39 @@
+<yandex>
+<dictionary>
+    <name>ac_dsp</name>
+    <source>
+        <mysql>
+            <port>3306</port>
+            <user>deployer</user>
+            <password>Qsx1@3esZ</password>
+            <host>127.0.0.1</host>
+            <db>magic</db>
+            <table>ExchangeDSPSettings</table>
+        </mysql>
+    </source>
+    <lifetime>
+        <min>300</min>
+        <max>360</max>
+    </lifetime>
+    <layout>
+        <flat/>
+    </layout>
+    <structure>
+            <id>
+                <name>id</name>
+                <type>Int16</type>
+                <null_value>0</null_value>
+           </id>
+            <attribute>
+                <name>keyname</name>
+                <type>String</type>
+                <null_value></null_value>
+            </attribute>
+            <attribute>
+                <name>company_name</name>
+                <type>String</type>
+                <null_value></null_value>
+            </attribute>
+    </structure>
+</dictionary>
+</yandex>

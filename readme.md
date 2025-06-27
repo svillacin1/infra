@@ -1,0 +1,16 @@
+New node checklist:
+- [ ] install system packages
+- [ ] install nodejs 16.20.2
+- [ ] setup local network
+- [ ] setup redis 
+- [ ] setup github Runner
+- [ ] add users 
+- [ ] clone repo
+- [ ] clone libs 
+- [ ] add configs
+- [ ] install npm packages
+- [ ] run node
+- [ ] add dns records
+- [ ] prometheus config
+- [ ] add to deploy
+- [ ] add to zabbix 

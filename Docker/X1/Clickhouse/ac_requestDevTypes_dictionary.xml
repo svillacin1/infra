@@ -1,0 +1,30 @@
+<yandex>
+<dictionary>
+    <name>ac_requestDevTypes</name>
+    <source>
+  <file>
+    <path>/var/www/dictionaries/requestDevTypes.csv</path>
+    <format>CSV</format>
+  </file>
+    </source>
+    <lifetime>
+        <min>300</min>
+        <max>360</max>
+    </lifetime>
+    <layout>
+        <flat/>
+    </layout>
+    <structure>
+            <id>
+                <name>id</name>
+                <type>Int16</type>
+                <null_value>0</null_value>
+           </id>
+            <attribute>
+                <name>reqDevType</name>
+                <type>String</type>
+                <null_value></null_value>
+            </attribute>
+    </structure>
+</dictionary>
+</yandex>

@@ -1,0 +1,58 @@
+<yandex>
+<dictionary>
+    <name>ExchangeSSPSettings</name>
+    <source>
+        <mysql>
+            <port>3306</port>
+            <user>deployer</user>
+            <password>Qsx1@3esZ</password>
+            <host>127.0.0.1</host>
+            <db>magic</db>
+            <table>ExchangeSSPSetings</table>
+        </mysql>
+    </source>
+    <lifetime>
+        <min>300</min>
+        <max>360</max>
+    </lifetime>
+    <layout>
+        <complex_key_hashed/>
+    </layout>
+    <structure>
+        <key>
+            <attribute>
+                <name>statname</name>
+                <type>String</type>
+<null_value>0</null_value>
+            </attribute>
+        </key>
+        <attribute>
+            <name>isVast</name>
+            <type>Int8</type>
+<null_value>0</null_value>
+        </attribute>
+        <attribute>
+            <name>isDirectPub</name>
+            <type>Int8</type>
+<null_value>0</null_value>
+        </attribute>
+        <attribute>
+            <name>isPrebid</name>
+            <type>Int8</type>
+<null_value>0</null_value>
+        </attribute>
+         <attribute>
+            <name>region</name>
+            <type>String</type>
+<null_value>US_EAST</null_value>
+        </attribute>
+
+         <attribute>
+            <name>company_name</name>
+            <type>String</type>
+<null_value>company_name</null_value>
+        </attribute>
+
+    </structure>
+</dictionary>
+</yandex>
