@@ -1,0 +1,26 @@
+name: Recovery X3 services
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  services_x3:
+    uses: Luna-Media-Group/actions/.github/workflows/recovery_aws_x3.yml@main
+    with:
+      runner_label: x3
+      repo: ${{ github.repository }}
+
+  front_x3:
+    uses: Luna-Media-Group/actions/.github/workflows/deploy_recovery_front_aws.yml@main
+    with:
+      runner_label: x3
+      repo: ${{ github.repository }}
+
+  mysql_x3:
+    uses: Luna-Media-Group/actions/.github/workflows/recovery_mysql.yml@main
+    with:
+      runner_label: x3
+      repo: ${{ github.repository }}

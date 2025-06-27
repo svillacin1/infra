@@ -1,0 +1,26 @@
+name: Recovery Main services
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  recovery_services_main:
+    uses: Luna-Media-Group/actions/.github/workflows/recovery_aws_main.yml@main
+    with:
+      runner_label: main
+      repo: ${{ github.repository }}
+
+  recovery_front_main:
+    uses: Luna-Media-Group/actions/.github/workflows/deploy_recovery_front_aws.yml@main
+    with:
+      runner_label: main
+      repo: ${{ github.repository }}
+
+  recovery_mysql_main:
+    uses: Luna-Media-Group/actions/.github/workflows/recovery_mysql.yml@main
+    with:
+      runner_label: main
+      repo: ${{ github.repository }}

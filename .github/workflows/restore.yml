@@ -1,0 +1,171 @@
+name: Backup and Restore DB
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'What env need to use?'
+        required: true
+        type: choice
+        options:
+          - main
+          - x1
+          - x2
+          - x3
+          - x4
+      table:
+        description: 'What table you want to restore'
+        required: true
+        type: choice
+        options:
+          - winimpression
+          - bidResponse
+      delete:
+        description: 'Delete after backup'
+        required: true
+        type: choice
+        options:
+          - true
+          - false
+      s3:
+        description: 'Upload to S3'
+        required: true
+        type: choice
+        options:
+          - true
+          - false
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  restore_main:
+    runs-on: storage
+    if: ${{ inputs.env == 'main' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install modules
+        run: | 
+          npm i
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+      - name: Run restore
+        run: |
+          node script.js \
+            --dbhost ${{ secrets.DB_main }} \
+            --dbuser vova \
+            --dbpass "${{ secrets.DB_PASS_main }}" \
+            --tbname ${{ github.event.inputs.table }} \
+            --acckey "${{ secrets.AWS_ACCESS_KEY }}" \
+            --seckey "${{ secrets.AWS_SECRET_KEY }}" \
+            --s3dir restore_test/main \
+            --deldata ${{ github.event.inputs.delete }} \
+            --s3enabled ${{ github.event.inputs.s3 }}
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+  restore_x1:
+    runs-on: storage
+    if: ${{ inputs.env == 'x1' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install modules
+        run: | 
+          npm i
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+      - name: Run restore
+        run: |
+          node script.js \
+            --dbhost ${{ secrets.DB_x1 }} \
+            --dbuser vova \
+            --dbpass "${{ secrets.DB_PASS_x1 }}" \
+            --tbname ${{ github.event.inputs.table }} \
+            --acckey "${{ secrets.AWS_ACCESS_KEY }}" \
+            --seckey "${{ secrets.AWS_SECRET_KEY }}" \
+            --s3dir restore_test/x1 \
+            --deldata ${{ github.event.inputs.delete }} \
+            --s3enabled ${{ github.event.inputs.s3 }}
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+  restore_x2:
+    runs-on: storage
+    if: ${{ inputs.env == 'x2' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install modules
+        run: | 
+          npm i
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+      - name: Run restore
+        run: |
+          node script.js \
+            --dbhost ${{ secrets.DB_x2 }} \
+            --dbuser vova \
+            --dbpass "${{ secrets.DB_PASS_x2 }}" \
+            --tbname ${{ github.event.inputs.table }} \
+            --acckey "${{ secrets.AWS_ACCESS_KEY }}" \
+            --seckey "${{ secrets.AWS_SECRET_KEY }}" \
+            --s3dir restore_test/x2 \
+            --deldata ${{ github.event.inputs.delete }} \
+            --s3enabled ${{ github.event.inputs.s3 }}
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+  restore_x3:
+    runs-on: storage
+    if: ${{ inputs.env == 'x3' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install modules
+        run: | 
+          npm i
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+      - name: Run restore
+        run: |
+          node script.js \
+            --dbhost ${{ secrets.DB_x3 }} \
+            --dbuser vova \
+            --dbpass "${{ secrets.DB_PASS_x3 }}" \
+            --tbname ${{ github.event.inputs.table }} \
+            --acckey "${{ secrets.AWS_ACCESS_KEY }}" \
+            --seckey "${{ secrets.AWS_SECRET_KEY }}" \
+            --s3dir restore_test/x3 \
+            --deldata ${{ github.event.inputs.delete }} \
+            --s3enabled ${{ github.event.inputs.s3 }}
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+  restore_x4:
+    runs-on: storage
+    if: ${{ inputs.env == 'x4' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install modules
+        run: | 
+          npm i
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript
+
+      - name: Run restore
+        run: |
+          node script.js \
+            --dbhost ${{ secrets.DB_x4 }} \
+            --dbuser vova \
+            --dbpass "${{ secrets.DB_PASS_x4 }}" \
+            --tbname ${{ github.event.inputs.table }} \
+            --acckey "${{ secrets.AWS_ACCESS_KEY }}" \
+            --seckey "${{ secrets.AWS_SECRET_KEY }}" \
+            --s3dir restore_test/x4 \
+            --deldata ${{ github.event.inputs.delete }} \
+            --s3enabled ${{ github.event.inputs.s3 }}
+        working-directory: /home/deployer/actions-runner/_work/infrastructure/infrastructure/DbDumpScript

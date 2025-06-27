@@ -1,0 +1,177 @@
+name: Update ssh
+
+on:
+  workflow_dispatch:
+    inputs:
+      vova:
+        description: 'vova ssh'
+        required: true
+      andrew:
+        description: 'andrew ssh'
+        required: true
+      max:
+        description: 'max ssh'
+        required: true
+      gerard:
+        description: 'gerard ssh'
+        required: true
+      svillacin:
+        description: 'svillacin ssh'
+        required: true
+      den:
+        description: 'den ssh'
+        required: true
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    name: Update ssh key
+    strategy:
+      matrix:
+#        runner: ["monitoring", "lb", "front_stage", "lb_2", "node_161_2", "node_162_3", "node_163_4", "node_165_6", ]
+        runner:
+          - monitoring
+          - lb
+          - front_stage
+          - lb_2
+          - node_161_2
+          - node_162_3
+          - node_163_4
+          - node_165_6
+          - node_173_21
+          - node_175_23
+          - node_192_24
+          - node_193_25
+          - node_194_26
+          - node_195_27
+          - front_x1
+          - node_224_51_x1
+          - node_226_53_x1
+          - node_225_52_x1
+          - lb_231_64_x2
+          - node_229_62_x2
+          - node_230_63_x2
+          - node_228_61_x2
+          - node_234_73_x3
+          - node_233_72_x3
+          - lb_235_74_x3
+          - node_232_71_x3
+          - front_x2
+          - node_238_83_x4
+          - node_237_82_x4
+          - node_236_81_x4
+          - lb_239_84_x4
+          - db_x1
+          - db_x2
+          - aerospike_x1
+          - aerospike_x2
+          - monitoring_x1
+          - monitoring_x2
+          - aerospike_main_164_5
+          - lb_172_20_x1
+          - db_main
+          - front_main
+          - lb_video_201_40
+          - node_video_202_41
+          - node_video_203_42
+          - node_video_204_43
+          - node_video_205_44
+          - k8s
+          - node_stage_api
+          - node_249_38
+          - node_250_39
+          - settingsapi
+          - node_206_35
+          - node_207_36
+          - node_248_37
+          - storage
+          - node_43_48
+          - node_44_49
+          - node_45_58
+          - node_120_85
+          - node_121_86
+          - node_122_87
+          - node_123_88
+          - node_46_80
+          - node_47_79
+          - db_x3
+          - db_x4
+          - front_x3
+          - front_x4
+          - lb_151_54
+          - node_39_100
+          - node_33_99
+          - node_32_78
+          - node_252_77
+          - node_150_76
+          - node_149_75
+          - node_253_119
+          - db_main_2
+          - ELK_227_50
+          - dev_runner
+          - mongo_166_7
+          - mongo_251_10
+          - vpn_200_33
+          - mongo_210_103
+          - mongo_215_108
+          - aerospike_36_92
+          - mongo_35_91
+          - aerospike_145_95
+          - mongo_144_94
+          - monitoring_x4
+          - monitoring_x3
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update vova key
+        run: |
+          if id "vova" &>/dev/null; then
+            sudo -u root bash -c "echo "${{ inputs.vova }}" > /home/vova/.ssh/authorized_keys"
+          else
+            echo "User vova does not exist, skipping."
+          fi
+
+      - name: Update andrew key
+        run: |
+          if id "andrew" &>/dev/null; then
+            sudo -u root bash -c "echo "${{ inputs.andrew }}" > /home/andrew/.ssh/authorized_keys"
+          else
+            echo "User andrew does not exist, skipping."
+          fi
+
+      - name: Update max key
+        run: |
+          if id "max" &>/dev/null; then
+            sudo -u root bash -c "echo "${{ inputs.max }}" > /home/max/.ssh/authorized_keys"
+          else
+            echo "User max does not exist, skipping."
+          fi
+
+      - name: Update gerard key
+        run: |
+          if id "gerard" &>/dev/null; then
+            sudo -u root bash -c "echo "${{ inputs.gerard }}" > /home/gerard/.ssh/authorized_keys"
+          else
+            echo "User gerard does not exist, skipping."
+          fi
+
+      - name: Update svillacin key
+        run: |
+          if id "svillacin" &>/dev/null; then
+            sudo -u root bash -c "echo "${{ inputs.svillacin }}" > /home/svillacin/.ssh/authorized_keys"
+          else
+            echo "User svillacin does not exist, skipping."
+          fi
+
+      - name: Update den key
+        run: |
+          if id "den" &>/dev/null; then
+            sudo -u root bash -c "echo "${{ inputs.den }}" > /home/den/.ssh/authorized_keys"
+          else
+            echo "User den does not exist, skipping."
+          fi

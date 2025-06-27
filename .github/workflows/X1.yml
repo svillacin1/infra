@@ -1,0 +1,16 @@
+name: kubernetes X1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: k8s
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2

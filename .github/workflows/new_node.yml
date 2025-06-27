@@ -1,0 +1,54 @@
+name: New node
+
+on:
+  workflow_dispatch:
+    inputs:
+      server_ip:
+        description: 'Server IP Address'
+        required: true
+      server_passwd:
+        description: 'Server password'
+        required: true
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy_prod:
+    uses: Luna-Media-Group/actions/.github/workflows/new_srv.yml@main
+    with:
+      server_ip: ${{ github.event.inputs.server_ip }}
+      server_passwd: ${{ github.event.inputs.server_passwd }}
+#jobs:
+#  install-runner:
+#    runs-on: ubuntu-20.04
+
+#    steps:
+#    - name: Checkout repository
+#      uses: actions/checkout@v2
+
+#    - name: Install necessary dependencies
+#      run: sudo apt-get install -y sshpass
+
+#    - name: Install dependencies on remote server
+#      run: |
+#        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ github.event.inputs.server_ip }} "echo '${{ secrets.SERVER_PASSWORD }}' | sudo -S apt-get update && sudo apt-get install -y curl tar"
+
+#    - name: Create runner directory on remote server
+#      run: |
+#        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ github.event.inputs.server_ip }} "mkdir -p actions-runner"
+
+#    - name: Download GitHub Actions Runner on remote server
+#      run: |
+#        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ github.event.inputs.server_ip }} "cd actions-runner && curl -o actions-runner-linux-x64-2.299.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.299.1/actions-runner-linux-x64-2.299.1.tar.gz && tar xzf ./actions-runner-linux-x64-2.299.1.tar.gz"
+
+#    - name: Configure GitHub Actions Runner on remote server
+#      env:
+#        RUNNER_TOKEN: ${{ secrets.RUNNER_TOKEN }}
+#        RUNNER_REPO: ${{ secrets.RUNNER_REPO }}
+#      run: |
+#        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ github.event.inputs.server_ip }} "cd actions-runner && ./config.sh --url https://github.com/${{ env.RUNNER_REPO }} --token ${{ env.RUNNER_TOKEN }}"
+
+#    - name: Install GitHub Actions Runner as a service on remote server
+#      run: |
+#        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ubuntu@${{ github.event.inputs.server_ip }} "cd actions-runner && echo '${{ secrets.SERVER_PASSWORD }}' | sudo -S ./svc.sh install && echo '${{ secrets.SERVER_PASSWORD }}' | sudo -S ./svc.sh start"
